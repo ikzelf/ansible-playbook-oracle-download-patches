@@ -1,0 +1,15 @@
+
+- name: oracle
+  src: https://github.com/klewan/ansible-role-oracle.git
+  scm: git
+  #version: develop
+  #version: feature/init
+  #version: master
+
+- name: oracle-download-patches
+  src: https://github.com/klewan/ansible-role-oracle-download-patches.git
+  scm: git
+  #version: develop
+  #version: feature/init
+  #version: master
+

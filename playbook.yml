@@ -1,0 +1,34 @@
+---
+- name: Download patches from My Oracle Support directly to the server
+  hosts: localhost
+  gather_facts: false
+  become: true
+  become_user: '{{ oracle_user }}'
+
+  vars_prompt:
+    - name: oracle_download_patches_mos_user
+      prompt: "Oracle Support Userid"
+      private: no
+    - name: oracle_download_patches_mos_pass
+      prompt: "Oracle Support Password"
+      private: yes
+
+  tasks:
+
+  - import_role:
+      name: oracle
+    tags:
+      - always
+
+  - import_role:
+      name: oracle-download-patches
+    vars:
+      oracle_download_patches_stage_directory: /software/rdbms/quarterly_patches
+      oracle_download_patches_list:
+        - 28980120
+#      oracle_download_patches_list:
+#        - 6880880
+#      oracle_download_patches_regexp: '.112.'
+    tags:
+      - oracle_download_patches
+
